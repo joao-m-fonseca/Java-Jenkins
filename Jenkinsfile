@@ -6,7 +6,7 @@ pipeline {
         string(name: 'DOCKER_CONTAINER_NAME', defaultValue: 'nodejs', description: 'Adicionar um nome do container')
         string(name: 'DOCKER_CONTAINER_PORT', defaultValue: '8080', description: 'Adicionar o Port do container')
     }
-    node {
+    stages {
         stage ('CleanResources') {
             agent any
             steps
