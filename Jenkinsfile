@@ -6,7 +6,7 @@ pipeline {
         string(name: 'DOCKER_CONTAINER_NAME', defaultValue: 'nodejs', description: 'Adicionar um nome do container')
         string(name: 'DOCKER_CONTAINER_PORT', defaultValue: '8080', description: 'Adicionar o Port do container')
     }
-    stages {
+    node {
         stage ('CleanResources') {
             agent any
             steps
@@ -14,7 +14,7 @@ pipeline {
                 cleanWs()
             }
         }
-        node ('Maven Clean') {
+        stage ('Maven Clean') {
             agent any
             withMaven {
                 sh "mvn clean verify"
