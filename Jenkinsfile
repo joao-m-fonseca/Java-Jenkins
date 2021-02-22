@@ -20,7 +20,7 @@ pipeline {
                 maven 'maven'
             }
             steps {
-                withMaven(JAVA-HOME: 'jdk', maven: 'maven') {
+                withMaven(JAVA_HOME: 'jdk', maven: 'maven') {
                     sh 'mvn clean package'
                 }
             }
