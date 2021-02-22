@@ -20,9 +20,7 @@ pipeline {
                 maven 'maven'
             }
             steps {
-                withMaven(jdk: 'jdk11', maven: 'maven') {
-                    sh 'mvn clean install'
-            }
+                sh 'maven clean package'
             }
         }
         stage ('Build Docker Image') {
