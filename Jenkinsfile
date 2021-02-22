@@ -6,16 +6,14 @@ pipeline {
         string(name: 'DOCKER_CONTAINER_PORT', defaultValue: '3000', description: 'Adicionar o Port do container')
     }
     tools {
-    //jdk 'jdk'
-    maven 'maven'
+    jdk 'jdk'
     }
     stages {
         stage ('Maven Clean') {
             agent any
             steps {
-               // sh 'chmod +x mvnw'
-               // sh './mvnw clean install'
-               sh ' maven clean install'
+                sh 'chmod +x mvnw'
+                sh './mvnw clean install'
             }
         }
         stage ('Build Docker Image') {
