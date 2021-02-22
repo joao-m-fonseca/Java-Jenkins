@@ -21,9 +21,10 @@ pipeline {
                 jdk 'jdk11'
             }
             steps {
-                sh 'cd ./backend-java/backend-java/book/'
-                sh 'mvn clean install'
-            }
+                checkout scm
+                withMaven(jdk: 'jdk11') {
+                   sh 'mvn -B -DskipTests clean package' 
+                }
         }
         stage ('Build Docker Image') {
                 agent any
