@@ -20,13 +20,14 @@ pipeline {
                 jdk 'jdk11'
             }
             steps {
+                sh 'cd backend-java/book'
                 sh './mvnw clean install'
             }
         }
         stage ('Build Docker Image') {
                 agent any
                 steps {
-                        sh 'docker build -t "${DOCKER_IMAGE_NAME}" backend-java/backend-java/book/'
+                        sh 'docker build -t "${DOCKER_IMAGE_NAME}" backend-java/book/'
                 }
             }
             stage ('Run Docker Container') {
