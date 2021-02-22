@@ -11,13 +11,6 @@ pipeline {
     jdk 'jdk'
     }
     stages {
-        stage ('CleanResources') {
-            agent any
-            steps
-            {
-                cleanWs()
-            }
-        }
         stage ('Maven Clean') {
             agent any
             steps {
@@ -26,21 +19,28 @@ pipeline {
             }
         }
         stage ('Build Docker Image') {
-                agent any
-                steps {
-                        sh 'docker build -t "${DOCKER_IMAGE_NAME}" .'
+            agent any
+            steps {
+                sh 'docker build -t "${DOCKER_IMAGE_NAME}" .'
                 }
             }
-            stage ('Run Docker Container') {
-                agent any
-                steps {
-                      sh """  docker ps -a \
-                        | awk '{ print \$1,\$2 }' \
-                        | grep "${DOCKER_IMAGE_NAME}" \
-                        | awk '{print \$1 }' \
-                        | xargs -I {} docker rm -f {}"""
+        stage ('Run Docker Container') {
+            agent any
+            steps {
+                sh """  docker ps -a \
+                    | awk '{ print \$1,\$2 }' \
+                    | grep "${DOCKER_IMAGE_NAME}" \
+                    | awk '{print \$1 }' \
+                    | xargs -I {} docker rm -f {}"""
                     sh 'docker run -d -p ${DOCKER_CONTAINER_PORT}:8080 --name "${DOCKER_CONTAINER_NAME}" "${DOCKER_IMAGE_NAME}"'
                 }
             }
+        stage ('CleanResources') {
+            agent any
+            steps
+            {
+                cleanWs()
+            }
+        }
         }
     }
