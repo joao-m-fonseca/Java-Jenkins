@@ -21,7 +21,7 @@ pipeline {
             }
             steps {
                 sh "mvn -version"
-                sh 'cd /backend-java/backend-java/book'
+                sh 'cd ./backend-java/backend-java/book'
                 sh "mvn clean install"
             }
         }
