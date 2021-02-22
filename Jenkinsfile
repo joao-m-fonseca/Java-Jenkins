@@ -16,8 +16,8 @@ pipeline {
         }
         stage ('Maven Clean') {
             agent any
-            withMaven {
-                sh "mvn clean verify"
+            steps {
+                sh "./mvnw -Dmaven.test.failure.ignore=true clean package"
             }
         }
         stage ('Build Docker Image') {
