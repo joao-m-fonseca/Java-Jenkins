@@ -23,7 +23,7 @@ pipeline {
         stage ('Build Docker Image') {
                 agent any
                 steps {
-                        sh 'docker build -t "${DOCKER_IMAGE_NAME}" .'
+                        sh 'docker build -t "${DOCKER_IMAGE_NAME}" backend-java/backend-java/book/'
                 }
             }
             stage ('Run Docker Container') {
