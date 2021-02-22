@@ -21,7 +21,7 @@ pipeline {
             }
             steps {
                 sh 'cd ./backend-java/backend-java/book/'
-                sh './mvnw clean package'
+                sh 'mvn clean install'
             }
         }
         stage ('Build Docker Image') {
