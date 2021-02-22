@@ -25,6 +25,7 @@ pipeline {
                 withMaven(jdk: 'jdk11') {
                    sh 'mvn -B -DskipTests clean package' 
                 }
+            }
         }
         stage ('Build Docker Image') {
                 agent any
