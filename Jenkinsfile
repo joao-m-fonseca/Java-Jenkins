@@ -6,6 +6,10 @@ pipeline {
         string(name: 'DOCKER_CONTAINER_NAME', defaultValue: 'javapp', description: 'Adicionar um nome do container')
         string(name: 'DOCKER_CONTAINER_PORT', defaultValue: '8080', description: 'Adicionar o Port do container')
     }
+    tools {
+    maven 'maven'
+    jdk 'jdk'
+    }
     stages {
         stage ('CleanResources') {
             agent any
