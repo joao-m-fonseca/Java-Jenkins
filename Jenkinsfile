@@ -17,6 +17,7 @@ pipeline {
         stage ('Maven Clean') {
             agent any
             tools {
+                maven 'maven'
                 jdk 'jdk11'
             }
             steps {
