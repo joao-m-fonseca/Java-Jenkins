@@ -2,8 +2,8 @@ pipeline {
     agent any
     
     parameters { 
-        string(name: 'DOCKER_IMAGE_NAME', defaultValue: 'nodejs', description: 'Adicionar um nome a imagem docker')
-        string(name: 'DOCKER_CONTAINER_NAME', defaultValue: 'nodejs', description: 'Adicionar um nome do container')
+        string(name: 'DOCKER_IMAGE_NAME', defaultValue: 'javapp', description: 'Adicionar um nome a imagem docker')
+        string(name: 'DOCKER_CONTAINER_NAME', defaultValue: 'javapp', description: 'Adicionar um nome do container')
         string(name: 'DOCKER_CONTAINER_PORT', defaultValue: '8080', description: 'Adicionar o Port do container')
     }
     stages {
@@ -16,8 +16,12 @@ pipeline {
         }
         stage ('Maven Clean') {
             agent any
+            tools {
+                maven 'maven'
+            }
             steps {
-                sh "./mvnw -Dmaven.test.failure.ignore=true clean package"
+                sh "mvn -version"
+                sh "mvn clean install"
             }
         }
         stage ('Build Docker Image') {
