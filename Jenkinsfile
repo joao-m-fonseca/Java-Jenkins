@@ -20,10 +20,6 @@ pipeline {
         }
         stage ('Maven Clean') {
             agent any
-            tools {
-                maven 'maven'
-                jdk 'jdk'
-            }
             steps {
                 checkout scm
                 withMaven(jdk: 'jdk') {
