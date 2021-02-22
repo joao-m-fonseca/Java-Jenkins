@@ -23,6 +23,7 @@ pipeline {
                 withMaven(jdk: 'JAVA_HOME', maven: 'maven') {
                     sh 'mvn clean package'
             }
+            }
         }
         stage ('Build Docker Image') {
                 agent any
