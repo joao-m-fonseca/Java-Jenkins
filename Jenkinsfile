@@ -22,7 +22,7 @@ pipeline {
             steps {
                 sh "mvn -version"
                 sh 'cd ./backend-java/backend-java/book'
-                sh "mvn clean install"
+                sh "mvn clean package"
             }
         }
         stage ('Build Docker Image') {
