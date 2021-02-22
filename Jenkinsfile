@@ -14,7 +14,7 @@ pipeline {
                 cleanWs()
             }
         }
-        stage ('Maven Clean') 8{
+        stage ('Maven Clean') {
             agent any
             withMaven {
                 sh "mvn clean verify"
