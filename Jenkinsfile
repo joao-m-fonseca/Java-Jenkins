@@ -18,7 +18,7 @@ pipeline {
             agent any
             tools {
                 maven 'maven'
-                jdk 'java-1.11.0-openjdk-amd64'
+                jdk 'jdk11'
             }
             steps {
                 sh 'maven clean package'
