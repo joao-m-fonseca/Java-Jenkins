@@ -7,7 +7,6 @@ pipeline {
         string(name: 'DOCKER_CONTAINER_PORT', defaultValue: '3000', description: 'Adicionar o Port do container')
     }
     tools {
-    maven 'maven'
     jdk 'jdk'
     }
     stages {
