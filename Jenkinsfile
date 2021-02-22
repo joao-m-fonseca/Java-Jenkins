@@ -41,7 +41,7 @@ pipeline {
                         | grep "${DOCKER_IMAGE_NAME}" \
                         | awk '{print \$1 }' \
                         | xargs -I {} docker rm -f {}"""
-                    sh 'docker run -d -p 8080:${DOCKER_CONTAINER_PORT} --name "${DOCKER_CONTAINER_NAME}" "${DOCKER_IMAGE_NAME}"'
+                    sh 'docker run -d -p ${DOCKER_CONTAINER_PORT}:8080 --name "${DOCKER_CONTAINER_NAME}" "${DOCKER_IMAGE_NAME}"'
                 }
             }
         }
