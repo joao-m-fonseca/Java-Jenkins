@@ -4,7 +4,7 @@ pipeline {
     parameters { 
         string(name: 'DOCKER_IMAGE_NAME', defaultValue: 'javapp', description: 'Adicionar um nome a imagem docker')
         string(name: 'DOCKER_CONTAINER_NAME', defaultValue: 'javapp', description: 'Adicionar um nome do container')
-        string(name: 'DOCKER_CONTAINER_PORT', defaultValue: '8080', description: 'Adicionar o Port do container')
+        string(name: 'DOCKER_CONTAINER_PORT', defaultValue: '3000', description: 'Adicionar o Port do container')
     }
     tools {
     maven 'maven'
@@ -21,10 +21,8 @@ pipeline {
         stage ('Maven Clean') {
             agent any
             steps {
-                checkout scm
-                withMaven(jdk: 'jdk') {
-                   sh 'mvn -B -DskipTests clean package' 
-                }
+                sh 'chmod +x mvnw'
+                sh './mvnw clean install'
             }
         }
         stage ('Build Docker Image') {
