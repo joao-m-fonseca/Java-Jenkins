@@ -18,11 +18,11 @@ pipeline {
             agent any
             tools {
                 maven 'maven'
-                jdk 'jdk11'
+                jdk 'jdk'
             }
             steps {
                 checkout scm
-                withMaven(jdk: 'jdk11') {
+                withMaven(jdk: 'jdk') {
                    sh 'mvn -B -DskipTests clean package' 
                 }
             }
