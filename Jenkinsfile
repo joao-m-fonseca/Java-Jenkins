@@ -21,7 +21,7 @@ pipeline {
                 jdk 'jdk11'
             }
             steps {
-                sh 'maven clean package'
+                sh './mvnw clean install'
             }
         }
         stage ('Build Docker Image') {
